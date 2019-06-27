@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 const validator = require('validator');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-
 const Task = require('../models/task');
 
 const userSchema = new mongoose.Schema({
@@ -26,7 +25,7 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true,
-        minlength: 7,
+        minlength: 6,
         trim: true,
         validate(value) {
             if (value.toLowerCase().includes('password')) {
@@ -49,6 +48,8 @@ const userSchema = new mongoose.Schema({
             required: true
         }
     }]
+}, {
+  timestamps: true,
 });
 
 userSchema.methods.toJSON = function() {
